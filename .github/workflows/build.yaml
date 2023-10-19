@@ -69,7 +69,7 @@ jobs:
           # Change this to "true" when you are sure the tag is unique. It is set to false
           # to ensure that existing images are not overwritten unintentionally.
           push: false
-          tags: test:${{ steps.determine_version.outputs.semVer }}
+          tags: tst:${{ steps.determine_version.outputs.semVer }}
 
       - name: Create Octopus Release
         # When the image is being pushed, remove this if property to have the workflow create
@@ -78,8 +78,8 @@ jobs:
         if: ${{ false }}
         uses: OctopusDeploy/create-release-action@v3
         env:
-          OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
-          OCTOPUS_URL: https://main.testoctopus.app/
-          OCTOPUS_SPACE: !DEFAULT
+          OCTOPUS_API_KEY: "${{ secrets.OCTOPUS_API_TOKEN }}"
+          OCTOPUS_URL: "https://main.testoctopus.app/"
+          OCTOPUS_SPACE: "!DEFAULT"
         with:
-          project: test
+          project: "test"
